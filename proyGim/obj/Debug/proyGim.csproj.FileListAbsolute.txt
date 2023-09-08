@@ -1,0 +1,12 @@
+C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\proyGim.exe.config
+C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\proyGim.exe
+C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\proyGim.pdb
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.SuggestedBindingRedirects.cache
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Form1.resources
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Properties.Resources.resources
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.exe
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.pdb
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Form2.resources
