@@ -16,5 +16,12 @@ namespace proyGim
         {
             InitializeComponent();
         }
+
+        private void btn_socios_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_socios fm = new Form_socios();
+            fm.Show();
+        }
     }
 }

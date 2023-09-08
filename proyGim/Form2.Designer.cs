@@ -46,6 +46,7 @@
             this.btn_socios.TabIndex = 0;
             this.btn_socios.Text = "Socios";
             this.btn_socios.UseVisualStyleBackColor = true;
+            this.btn_socios.Click += new System.EventHandler(this.btn_socios_Click);
             // 
             // btn_rutinas
             // 
