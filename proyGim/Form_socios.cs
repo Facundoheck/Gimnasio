@@ -21,5 +21,12 @@ namespace proyGim
         {
 
         }
+
+        private void Form_socios_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'gimnasioDataSet.socios' table. You can move, or remove it, as needed.
+            this.sociosTableAdapter.Fill(this.gimnasioDataSet.socios);
+
+        }
     }
 }

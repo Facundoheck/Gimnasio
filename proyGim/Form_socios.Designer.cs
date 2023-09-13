@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -56,7 +57,24 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.gimnasioDataSet = new proyGim.GimnasioDataSet();
+            this.sociosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sociosTableAdapter = new proyGim.GimnasioDataSetTableAdapters.sociosTableAdapter();
+            this.idsocioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.correoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechanacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nrocuentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idusuarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -234,7 +252,22 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idsocioDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.apellidoDataGridViewTextBoxColumn,
+            this.dniDataGridViewTextBoxColumn,
+            this.telefonoDataGridViewTextBoxColumn,
+            this.correoDataGridViewTextBoxColumn,
+            this.direccionDataGridViewTextBoxColumn,
+            this.sexoDataGridViewTextBoxColumn,
+            this.fechanacDataGridViewTextBoxColumn,
+            this.descripcionDataGridViewTextBoxColumn,
+            this.nrocuentaDataGridViewTextBoxColumn,
+            this.idusuarioDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.sociosBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(396, 99);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(706, 360);
@@ -306,6 +339,93 @@
             this.label13.TabIndex = 30;
             this.label13.Text = "*";
             // 
+            // gimnasioDataSet
+            // 
+            this.gimnasioDataSet.DataSetName = "GimnasioDataSet";
+            this.gimnasioDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sociosBindingSource
+            // 
+            this.sociosBindingSource.DataMember = "socios";
+            this.sociosBindingSource.DataSource = this.gimnasioDataSet;
+            // 
+            // sociosTableAdapter
+            // 
+            this.sociosTableAdapter.ClearBeforeFill = true;
+            // 
+            // idsocioDataGridViewTextBoxColumn
+            // 
+            this.idsocioDataGridViewTextBoxColumn.DataPropertyName = "id_socio";
+            this.idsocioDataGridViewTextBoxColumn.HeaderText = "id_socio";
+            this.idsocioDataGridViewTextBoxColumn.Name = "idsocioDataGridViewTextBoxColumn";
+            this.idsocioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // apellidoDataGridViewTextBoxColumn
+            // 
+            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido";
+            this.apellidoDataGridViewTextBoxColumn.HeaderText = "apellido";
+            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            // 
+            // dniDataGridViewTextBoxColumn
+            // 
+            this.dniDataGridViewTextBoxColumn.DataPropertyName = "dni";
+            this.dniDataGridViewTextBoxColumn.HeaderText = "dni";
+            this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
+            // 
+            // telefonoDataGridViewTextBoxColumn
+            // 
+            this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.HeaderText = "telefono";
+            this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            // 
+            // correoDataGridViewTextBoxColumn
+            // 
+            this.correoDataGridViewTextBoxColumn.DataPropertyName = "correo";
+            this.correoDataGridViewTextBoxColumn.HeaderText = "correo";
+            this.correoDataGridViewTextBoxColumn.Name = "correoDataGridViewTextBoxColumn";
+            // 
+            // direccionDataGridViewTextBoxColumn
+            // 
+            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "direccion";
+            this.direccionDataGridViewTextBoxColumn.HeaderText = "direccion";
+            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
+            // 
+            // sexoDataGridViewTextBoxColumn
+            // 
+            this.sexoDataGridViewTextBoxColumn.DataPropertyName = "sexo";
+            this.sexoDataGridViewTextBoxColumn.HeaderText = "sexo";
+            this.sexoDataGridViewTextBoxColumn.Name = "sexoDataGridViewTextBoxColumn";
+            // 
+            // fechanacDataGridViewTextBoxColumn
+            // 
+            this.fechanacDataGridViewTextBoxColumn.DataPropertyName = "fecha_nac";
+            this.fechanacDataGridViewTextBoxColumn.HeaderText = "fecha_nac";
+            this.fechanacDataGridViewTextBoxColumn.Name = "fechanacDataGridViewTextBoxColumn";
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            // 
+            // nrocuentaDataGridViewTextBoxColumn
+            // 
+            this.nrocuentaDataGridViewTextBoxColumn.DataPropertyName = "nro_cuenta";
+            this.nrocuentaDataGridViewTextBoxColumn.HeaderText = "nro_cuenta";
+            this.nrocuentaDataGridViewTextBoxColumn.Name = "nrocuentaDataGridViewTextBoxColumn";
+            // 
+            // idusuarioDataGridViewTextBoxColumn
+            // 
+            this.idusuarioDataGridViewTextBoxColumn.DataPropertyName = "id_usuario";
+            this.idusuarioDataGridViewTextBoxColumn.HeaderText = "id_usuario";
+            this.idusuarioDataGridViewTextBoxColumn.Name = "idusuarioDataGridViewTextBoxColumn";
+            // 
             // Form_socios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,7 +463,10 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Socios";
+            this.Load += new System.EventHandler(this.Form_socios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,5 +502,20 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private GimnasioDataSet gimnasioDataSet;
+        private System.Windows.Forms.BindingSource sociosBindingSource;
+        private GimnasioDataSetTableAdapters.sociosTableAdapter sociosTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idsocioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dniDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn correoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sexoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechanacDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nrocuentaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idusuarioDataGridViewTextBoxColumn;
     }
 }

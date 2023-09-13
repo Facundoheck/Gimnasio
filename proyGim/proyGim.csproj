@@ -81,6 +81,11 @@
     <Compile Include="Form_socios.Designer.cs">
       <DependentUpon>Form_socios.cs</DependentUpon>
     </Compile>
+    <Compile Include="GimnasioDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GimnasioDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -102,6 +107,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="GimnasioDataSet.xsc">
+      <DependentUpon>GimnasioDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GimnasioDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GimnasioDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GimnasioDataSet.xss">
+      <DependentUpon>GimnasioDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
