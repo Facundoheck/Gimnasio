@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GimnasioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cta_cte">
+    <Key>
+      <PropertyRef Name="nro_cuenta" />
+    </Key>
+    <Property Name="nro_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="importe" Type="Double" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="socios" Relationship="Self.FK_cuenta_socio" FromRole="cta_cte" ToRole="socios" />
+  </EntityType>
+  <EntityType Name="rutinas">
+    <Key>
+      <PropertyRef Name="nro_rutina" />
+    </Key>
+    <Property Name="nro_rutina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ejercicio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="peso" Type="Double" />
+    <Property Name="tiempo" Type="Int64" />
+    <NavigationProperty Name="socios" Relationship="Self.FK_socio_rutina" FromRole="rutinas" ToRole="socios" />
+  </EntityType>
+  <EntityType Name="socios">
+    <Key>
+      <PropertyRef Name="id_socio" />
+    </Key>
+    <Property Name="id_socio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nac" Type="DateTime" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="nro_cuenta" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <NavigationProperty Name="cta_cte" Relationship="Self.FK_cuenta_socio" FromRole="socios" ToRole="cta_cte" />
+    <NavigationProperty Name="rutinas" Relationship="Self.FK_socio_rutina" FromRole="socios" ToRole="rutinas" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_usuario_socio" FromRole="socios" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cont" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nac" Type="DateTime" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="socios" Relationship="Self.FK_usuario_socio" FromRole="usuarios" ToRole="socios" />
+  </EntityType>
+  <Association Name="FK_cuenta_socio">
+    <End Role="cta_cte" Type="Self.cta_cte" Multiplicity="0..1" />
+    <End Role="socios" Type="Self.socios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cta_cte">
+        <PropertyRef Name="nro_cuenta" />
+      </Principal>
+      <Dependent Role="socios">
+        <PropertyRef Name="nro_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socio_rutina">
+    <End Role="socios" Type="Self.socios" Multiplicity="1" />
+    <End Role="rutinas" Type="Self.rutinas" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="socios">
+        <PropertyRef Name="id_socio" />
+      </Principal>
+      <Dependent Role="rutinas">
+        <PropertyRef Name="nro_rutina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_socio">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="socios" Type="Self.socios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="socios">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GimnasioEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cta_cte" EntityType="Self.cta_cte" />
+    <EntitySet Name="rutinas" EntityType="Self.rutinas" />
+    <EntitySet Name="socios" EntityType="Self.socios" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <AssociationSet Name="FK_cuenta_socio" Association="Self.FK_cuenta_socio">
+      <End Role="cta_cte" EntitySet="cta_cte" />
+      <End Role="socios" EntitySet="socios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socio_rutina" Association="Self.FK_socio_rutina">
+      <End Role="socios" EntitySet="socios" />
+      <End Role="rutinas" EntitySet="rutinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_socio" Association="Self.FK_usuario_socio">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="socios" EntitySet="socios" />
+    </AssociationSet>
+    <FunctionImport Name="PA_NUEVO_SOCIO">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="dni" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="sexo" Mode="In" Type="String" />
+      <Parameter Name="fecha_nac" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

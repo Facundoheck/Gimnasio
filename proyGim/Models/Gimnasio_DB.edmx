@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GimnasioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cta_cte">
+          <Key>
+            <PropertyRef Name="nro_cuenta" />
+          </Key>
+          <Property Name="nro_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="importe" Type="float" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="rutinas">
+          <Key>
+            <PropertyRef Name="nro_rutina" />
+          </Key>
+          <Property Name="nro_rutina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" />
+          <Property Name="ejercicio" Type="varchar" MaxLength="100" />
+          <Property Name="peso" Type="float" />
+          <Property Name="tiempo" Type="bigint" />
+        </EntityType>
+        <EntityType Name="socios">
+          <Key>
+            <PropertyRef Name="id_socio" />
+          </Key>
+          <Property Name="id_socio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="apellido" Type="varchar" MaxLength="30" />
+          <Property Name="dni" Type="varchar" MaxLength="15" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="correo" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="sexo" Type="varchar" MaxLength="30" />
+          <Property Name="fecha_nac" Type="date" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="nro_cuenta" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="30" />
+          <Property Name="cont" Type="varchar" MaxLength="30" />
+          <Property Name="rol" Type="varchar" MaxLength="22" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="apellido" Type="varchar" MaxLength="30" />
+          <Property Name="dni" Type="varchar" MaxLength="15" />
+          <Property Name="telefono" Type="varchar" MaxLength="30" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="sexo" Type="varchar" MaxLength="30" />
+          <Property Name="fecha_nac" Type="date" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_cuenta_socio">
+          <End Role="cta_cte" Type="Self.cta_cte" Multiplicity="0..1" />
+          <End Role="socios" Type="Self.socios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cta_cte">
+              <PropertyRef Name="nro_cuenta" />
+            </Principal>
+            <Dependent Role="socios">
+              <PropertyRef Name="nro_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_socio_rutina">
+          <End Role="socios" Type="Self.socios" Multiplicity="1" />
+          <End Role="rutinas" Type="Self.rutinas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="socios">
+              <PropertyRef Name="id_socio" />
+            </Principal>
+            <Dependent Role="rutinas">
+              <PropertyRef Name="nro_rutina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_socio">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="socios" Type="Self.socios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="socios">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PA_NUEVO_SOCIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="sexo" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nac" Type="date" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GimnasioModelStoreContainer">
+          <EntitySet Name="cta_cte" EntityType="Self.cta_cte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rutinas" EntityType="Self.rutinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="socios" EntityType="Self.socios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cuenta_socio" Association="Self.FK_cuenta_socio">
+            <End Role="cta_cte" EntitySet="cta_cte" />
+            <End Role="socios" EntitySet="socios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_socio_rutina" Association="Self.FK_socio_rutina">
+            <End Role="socios" EntitySet="socios" />
+            <End Role="rutinas" EntitySet="rutinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_socio" Association="Self.FK_usuario_socio">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="socios" EntitySet="socios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GimnasioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cta_cte">
+          <Key>
+            <PropertyRef Name="nro_cuenta" />
+          </Key>
+          <Property Name="nro_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="importe" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="socios" Relationship="Self.FK_cuenta_socio" FromRole="cta_cte" ToRole="socios" />
+        </EntityType>
+        <EntityType Name="rutinas">
+          <Key>
+            <PropertyRef Name="nro_rutina" />
+          </Key>
+          <Property Name="nro_rutina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ejercicio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="peso" Type="Double" />
+          <Property Name="tiempo" Type="Int64" />
+          <NavigationProperty Name="socios" Relationship="Self.FK_socio_rutina" FromRole="rutinas" ToRole="socios" />
+        </EntityType>
+        <EntityType Name="socios">
+          <Key>
+            <PropertyRef Name="id_socio" />
+          </Key>
+          <Property Name="id_socio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nac" Type="DateTime" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nro_cuenta" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="cta_cte" Relationship="Self.FK_cuenta_socio" FromRole="socios" ToRole="cta_cte" />
+          <NavigationProperty Name="rutinas" Relationship="Self.FK_socio_rutina" FromRole="socios" ToRole="rutinas" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK_usuario_socio" FromRole="socios" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cont" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nac" Type="DateTime" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="socios" Relationship="Self.FK_usuario_socio" FromRole="usuarios" ToRole="socios" />
+        </EntityType>
+        <Association Name="FK_cuenta_socio">
+          <End Role="cta_cte" Type="Self.cta_cte" Multiplicity="0..1" />
+          <End Role="socios" Type="Self.socios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cta_cte">
+              <PropertyRef Name="nro_cuenta" />
+            </Principal>
+            <Dependent Role="socios">
+              <PropertyRef Name="nro_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_socio_rutina">
+          <End Role="socios" Type="Self.socios" Multiplicity="1" />
+          <End Role="rutinas" Type="Self.rutinas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="socios">
+              <PropertyRef Name="id_socio" />
+            </Principal>
+            <Dependent Role="rutinas">
+              <PropertyRef Name="nro_rutina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_socio">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="socios" Type="Self.socios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="socios">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GimnasioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cta_cte" EntityType="Self.cta_cte" />
+          <EntitySet Name="rutinas" EntityType="Self.rutinas" />
+          <EntitySet Name="socios" EntityType="Self.socios" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <AssociationSet Name="FK_cuenta_socio" Association="Self.FK_cuenta_socio">
+            <End Role="cta_cte" EntitySet="cta_cte" />
+            <End Role="socios" EntitySet="socios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_socio_rutina" Association="Self.FK_socio_rutina">
+            <End Role="socios" EntitySet="socios" />
+            <End Role="rutinas" EntitySet="rutinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_socio" Association="Self.FK_usuario_socio">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="socios" EntitySet="socios" />
+          </AssociationSet>
+          <FunctionImport Name="PA_NUEVO_SOCIO">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="sexo" Mode="In" Type="String" />
+            <Parameter Name="fecha_nac" Mode="In" Type="DateTime" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GimnasioModelStoreContainer" CdmEntityContainer="GimnasioEntities">
+          <EntitySetMapping Name="cta_cte">
+            <EntityTypeMapping TypeName="GimnasioModel.cta_cte">
+              <MappingFragment StoreEntitySet="cta_cte">
+                <ScalarProperty Name="nro_cuenta" ColumnName="nro_cuenta" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rutinas">
+            <EntityTypeMapping TypeName="GimnasioModel.rutinas">
+              <MappingFragment StoreEntitySet="rutinas">
+                <ScalarProperty Name="nro_rutina" ColumnName="nro_rutina" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="ejercicio" ColumnName="ejercicio" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="tiempo" ColumnName="tiempo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="socios">
+            <EntityTypeMapping TypeName="GimnasioModel.socios">
+              <MappingFragment StoreEntitySet="socios">
+                <ScalarProperty Name="id_socio" ColumnName="id_socio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nro_cuenta" ColumnName="nro_cuenta" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="GimnasioModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="cont" ColumnName="cont" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PA_NUEVO_SOCIO" FunctionName="GimnasioModel.Store.PA_NUEVO_SOCIO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

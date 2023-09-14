@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GimnasioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cta_cte">
+    <Key>
+      <PropertyRef Name="nro_cuenta" />
+    </Key>
+    <Property Name="nro_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="importe" Type="float" />
+    <Property Name="fecha" Type="date" />
+  </EntityType>
+  <EntityType Name="rutinas">
+    <Key>
+      <PropertyRef Name="nro_rutina" />
+    </Key>
+    <Property Name="nro_rutina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="30" />
+    <Property Name="ejercicio" Type="varchar" MaxLength="100" />
+    <Property Name="peso" Type="float" />
+    <Property Name="tiempo" Type="bigint" />
+  </EntityType>
+  <EntityType Name="socios">
+    <Key>
+      <PropertyRef Name="id_socio" />
+    </Key>
+    <Property Name="id_socio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" />
+    <Property Name="apellido" Type="varchar" MaxLength="30" />
+    <Property Name="dni" Type="varchar" MaxLength="15" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" />
+    <Property Name="correo" Type="varchar" MaxLength="100" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" />
+    <Property Name="sexo" Type="varchar" MaxLength="30" />
+    <Property Name="fecha_nac" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="nro_cuenta" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="30" />
+    <Property Name="cont" Type="varchar" MaxLength="30" />
+    <Property Name="rol" Type="varchar" MaxLength="22" />
+    <Property Name="nombre" Type="varchar" MaxLength="30" />
+    <Property Name="apellido" Type="varchar" MaxLength="30" />
+    <Property Name="dni" Type="varchar" MaxLength="15" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="correo" Type="varchar" MaxLength="50" />
+    <Property Name="sexo" Type="varchar" MaxLength="30" />
+    <Property Name="fecha_nac" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_cuenta_socio">
+    <End Role="cta_cte" Type="Self.cta_cte" Multiplicity="0..1" />
+    <End Role="socios" Type="Self.socios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cta_cte">
+        <PropertyRef Name="nro_cuenta" />
+      </Principal>
+      <Dependent Role="socios">
+        <PropertyRef Name="nro_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socio_rutina">
+    <End Role="socios" Type="Self.socios" Multiplicity="1" />
+    <End Role="rutinas" Type="Self.rutinas" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="socios">
+        <PropertyRef Name="id_socio" />
+      </Principal>
+      <Dependent Role="rutinas">
+        <PropertyRef Name="nro_rutina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_socio">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="socios" Type="Self.socios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="socios">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="PA_NUEVO_SOCIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="apellido" Type="varchar" Mode="In" />
+    <Parameter Name="dni" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="correo" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="sexo" Type="varchar" Mode="In" />
+    <Parameter Name="fecha_nac" Type="date" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="GimnasioModelStoreContainer">
+    <EntitySet Name="cta_cte" EntityType="Self.cta_cte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rutinas" EntityType="Self.rutinas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="socios" EntityType="Self.socios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_cuenta_socio" Association="Self.FK_cuenta_socio">
+      <End Role="cta_cte" EntitySet="cta_cte" />
+      <End Role="socios" EntitySet="socios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socio_rutina" Association="Self.FK_socio_rutina">
+      <End Role="socios" EntitySet="socios" />
+      <End Role="rutinas" EntitySet="rutinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_socio" Association="Self.FK_usuario_socio">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="socios" EntitySet="socios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

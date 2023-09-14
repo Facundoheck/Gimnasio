@@ -40,7 +40,6 @@
             this.txt_tel = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_correo = new System.Windows.Forms.TextBox();
-            this.txt_fecha_nac = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_descripcion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.txt_sexo = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.dtp_fecha_nac = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_socios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).BeginInit();
@@ -119,11 +119,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(262, 370);
+            this.button1.Location = new System.Drawing.Point(243, 366);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 53);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Agregar";
+            this.button1.Size = new System.Drawing.Size(95, 32);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Aceptar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -158,14 +158,6 @@
             this.txt_correo.Name = "txt_correo";
             this.txt_correo.Size = new System.Drawing.Size(221, 20);
             this.txt_correo.TabIndex = 4;
-            // 
-            // txt_fecha_nac
-            // 
-            this.txt_fecha_nac.Location = new System.Drawing.Point(117, 300);
-            this.txt_fecha_nac.Name = "txt_fecha_nac";
-            this.txt_fecha_nac.Size = new System.Drawing.Size(221, 20);
-            this.txt_fecha_nac.TabIndex = 7;
-            this.txt_fecha_nac.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label6
             // 
@@ -246,7 +238,7 @@
             // dataGrid_socios
             // 
             this.dataGrid_socios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_socios.Location = new System.Drawing.Point(396, 99);
+            this.dataGrid_socios.Location = new System.Drawing.Point(387, 89);
             this.dataGrid_socios.Name = "dataGrid_socios";
             this.dataGrid_socios.Size = new System.Drawing.Size(706, 360);
             this.dataGrid_socios.TabIndex = 24;
@@ -363,11 +355,19 @@
             this.label15.TabIndex = 34;
             this.label15.Text = "Sexo:";
             // 
+            // dtp_fecha_nac
+            // 
+            this.dtp_fecha_nac.Location = new System.Drawing.Point(117, 300);
+            this.dtp_fecha_nac.Name = "dtp_fecha_nac";
+            this.dtp_fecha_nac.Size = new System.Drawing.Size(221, 20);
+            this.dtp_fecha_nac.TabIndex = 8;
+            // 
             // Form_socios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 623);
+            this.Controls.Add(this.dtp_fecha_nac);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txt_sexo);
@@ -388,7 +388,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_descripcion);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txt_fecha_nac);
             this.Controls.Add(this.txt_correo);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txt_tel);
@@ -426,7 +425,6 @@
         private System.Windows.Forms.TextBox txt_tel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_correo;
-        private System.Windows.Forms.TextBox txt_fecha_nac;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_descripcion;
         private System.Windows.Forms.Label label7;
@@ -450,5 +448,6 @@
         private System.Windows.Forms.TextBox txt_sexo;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker dtp_fecha_nac;
     }
 }
