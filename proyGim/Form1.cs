@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,21 @@ namespace proyGim
 {
     public partial class Form1 : Form
     {
-        public Form1()
+
+        public static class ConexionBD
         {
+            public static SqlConnection ObtenerConexion()
+            {
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Usuario\source\repos\proyGim\proyGim\Gimnasio.mdf;Integrated Security=True;";
+                SqlConnection connection = new SqlConnection(connectionString);
+                return connection;
+            }
+        }
+
+
+    public Form1()
+        {
+
             InitializeComponent();
         }
 
