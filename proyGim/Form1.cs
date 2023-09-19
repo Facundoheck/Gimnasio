@@ -112,5 +112,41 @@ namespace proyGim
             }
 
         }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult res;
+            res = MessageBox.Show("Quiere salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'gimnasioDataSet1.usuarios' table. You can move, or remove it, as needed.
+            this.usuariosTableAdapter.Fill(this.gimnasioDataSet1.usuarios);
+            // TODO: This line of code loads data into the 'gimnasioDataSet.socios' table. You can move, or remove it, as needed.
+            this.sociosTableAdapter.Fill(this.gimnasioDataSet.socios);
+
+        }
+
+        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.usuariosTableAdapter.FillBy(this.gimnasioDataSet1.usuarios);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }
