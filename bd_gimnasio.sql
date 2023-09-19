@@ -81,21 +81,21 @@
 
 ------------------------------------LLAMADA AL PA PARA NUEVO ADMIN-------------------------------------------
 BEGIN TRANSACTION
-exec PA_NUEVO_USUARIO
-		--	id_usuario			autom
-		@usuario			=	'liomessi',
-		@cont				=	'eldiez',
-		@rol				=	'Profesor',
-		@nombre				=	'Lionel',
-		@apellido			=	'Messi',
-		@dni				=	'35286143',
-		@telefono			=	'5493444542',
-		@direccion			=	'Tucuman bis 123',
-		@correo				=	'lmessi@gmail.com',
-		@sexo				=	'masc',
-		@fecha_nac			=	'1999-12-20',
-		@descripcion		=	'dueño del gimnasio'
-		--	id_socio		autom
+--exec PA_NUEVO_USUARIO
+--		--	id_usuario			autom
+--		@usuario			=	'liomessi',
+--		@cont				=	'eldiez',
+--		@rol				=	'Profesor',
+--		@nombre				=	'Lionel',
+--		@apellido			=	'Messi',
+--		@dni				=	'35286143',
+--		@telefono			=	'5493444542',
+--		@direccion			=	'Tucuman bis 123',
+--		@correo				=	'lmessi@gmail.com',
+--		@sexo				=	'masc',
+--		@fecha_nac			=	'1999-12-20',
+--		@descripcion		=	'dueño del gimnasio'
+--		--	id_socio		autom
 
 
 SELECT * FROM USUARIOS
