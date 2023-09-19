@@ -38,9 +38,6 @@ namespace proyGim
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-
-
-
             //con.Open();
             //cmd = new SqlCommand("SELECT * FROM usuarios WHERE usuario='"+txt_usuario.Text+"'and cont='"+txt_contra.Text+"'", con);
             //da = new SqlDataAdapter(cmd);
@@ -53,8 +50,6 @@ namespace proyGim
             //    Form_main fm = new Form_main();
             //    fm.Show();
             //}
-
-
 
             //if (textBox1.Text == "admin" && textBox2.Text == "admin")
             //{
@@ -83,24 +78,29 @@ namespace proyGim
                 DataTable dtable = new DataTable();
                 da.Fill(dtable);
 
+                String cmbItemValue = cmb_rol.SelectedItem.ToString();
+
                 if (dtable.Rows.Count > 0)
                 {
-                    user = txt_usuario.Text;
-                    pass = txt_contra.Text;
+                    for (int i = 0; i < dtable.Rows.Count; i++)
+                    {
+                        if (dtable.Rows[i]["rol"].ToString() == cmbItemValue)
+                        {
+                            this.Hide();
+                            Form_main fm = new Form_main();
+                            fm.Show();
+                        }
 
-                    this.Hide();
-                    Form_main fm = new Form_main();
-                    fm.Show();
+                    }
+                    //user = txt_usuario.Text;
+                    //pass = txt_contra.Text;
                 }
                 else
                 {
                     MessageBox.Show("El usuario o la contraseña no son correctos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txt_usuario.Clear();
                     txt_contra.Clear();
-
                 }
-
-
             }
             catch
             {
