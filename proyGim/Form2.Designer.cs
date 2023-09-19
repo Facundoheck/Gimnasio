@@ -1,6 +1,6 @@
 ﻿namespace proyGim
 {
-    partial class Form2
+    partial class Form_main
     {
         /// <summary>
         /// Required designer variable.
@@ -103,7 +103,7 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // Form2
+            // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,7 +115,7 @@
             this.Controls.Add(this.btn_ctacte);
             this.Controls.Add(this.btn_rutinas);
             this.Controls.Add(this.btn_socios);
-            this.Name = "Form2";
+            this.Name = "Form_main";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

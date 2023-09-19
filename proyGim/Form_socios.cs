@@ -107,5 +107,15 @@ namespace proyGim
 
             //}
         }
+
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

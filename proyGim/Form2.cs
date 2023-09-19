@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace proyGim
 {
-    public partial class Form2 : Form
+    public partial class Form_main : Form
     {
-        public Form2()
+        public Form_main()
         {
             InitializeComponent();
         }

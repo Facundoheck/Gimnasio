@@ -9,10 +9,10 @@ C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.GenerateR
 C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.exe
 C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.pdb
-C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Form2.resources
 C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Form_socios.resources
 C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\EntityFramework.dll
 C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\EntityFramework.xml
 C:\Users\Usuario\source\repos\proyGim\proyGim\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.csproj.CopyComplete
+C:\Users\Usuario\source\repos\proyGim\proyGim\obj\Debug\proyGim.Form_main.resources

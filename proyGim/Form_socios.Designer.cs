@@ -64,9 +64,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.dtp_fecha_nac = new System.Windows.Forms.DateTimePicker();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contactarASoporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_socios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_nombre
@@ -234,6 +239,7 @@
             this.button5.TabIndex = 23;
             this.button5.Text = "Salir";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // dataGrid_socios
             // 
@@ -362,6 +368,38 @@
             this.dtp_fecha_nac.Size = new System.Drawing.Size(221, 20);
             this.dtp_fecha_nac.TabIndex = 8;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ayudaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1152, 24);
+            this.menuStrip1.TabIndex = 35;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contactarASoporteToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
+            // 
+            // contactarASoporteToolStripMenuItem
+            // 
+            this.contactarASoporteToolStripMenuItem.Name = "contactarASoporteToolStripMenuItem";
+            this.contactarASoporteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contactarASoporteToolStripMenuItem.Text = "Contactar a soporte";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            // 
             // Form_socios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,6 +437,8 @@
             this.Controls.Add(this.txt_dni);
             this.Controls.Add(this.txt_apellido);
             this.Controls.Add(this.txt_nombre);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form_socios";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -407,6 +447,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_socios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,5 +491,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DateTimePicker dtp_fecha_nac;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contactarASoporteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }
