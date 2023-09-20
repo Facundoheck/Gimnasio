@@ -14,21 +14,20 @@ namespace proyGim
 {
     public partial class Form_socios : Form
     {
-
+        SqlConnection con = new SqlConnection(@"Data Source=Desktop1\SQLEXPRESS;Initial Catalog=Gimnasio;Integrated Security=True");
 
         public Form_socios()
         {
             InitializeComponent();
         }
 
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form_socios_Load(object sender, EventArgs e)
         {
+
+            //cargar datos de la bd al dgv
+            filldgv();
+
+            //inicializar vacias las casillas
             txt_nombre.Text = "";
             txt_apellido.Text = "";
             txt_dni.Text = "";
@@ -42,75 +41,91 @@ namespace proyGim
             //Refrescar();
         }
 
-        #region refrescar
-        //private void Refrescar()
+        private void filldgv()
+        { 
+            con.Open();
+            string query = "SELECT * FROM socios";
+            SqlDataAdapter adapter = new SqlDataAdapter(query,con);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            dgv_socios.DataSource = dt;
+            con.Close();
+
+        }
+
+        private void DataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verificar si la celda actual pertenece a la columna de fecha ("Fecha")
+            if (dgv_socios.Columns[e.ColumnIndex].Name == "fecha_nac" && e.RowIndex >= 0)
+            {
+                // Obtener el valor de la celda actual
+                //DateTime fecha = (DateTime)e.Value;
+
+                // Verificar si la celda actual no es nula y es de tipo DateTime
+                if (e.Value != null && e.Value is DateTime)
+                {
+                    DateTime fecha = (DateTime)e.Value;
+
+                    // Formatear la fecha como cadena
+                    e.Value = fecha.ToString("dd/MM/yyyy"); // O el formato deseado
+                    e.FormattingApplied = true; // Marcar como formateado para evitar la recursión
+                }
+
+
+                // Formatear la fecha como una cadena con el formato deseado
+                //e.Value = fecha.ToString("dd/MM/yyyy"); // Cambia el formato según tus necesidades
+                //e.FormattingApplied = true; // Marcar como formateado para evitar la recursión
+            }
+        }
+
+
+
+        //private void button1_Click(object sender, EventArgs e) // boton aceptar
         //{
-        //    using (GimnasioEntities db = new GimnasioEntities())
-        //    {
-        //        var lst = from d in db.socios
-        //                  select d;
-        //        dgv_socios.DataSource = lst.ToList();
-        //    }
+        //    con.Open();
+        //    SqlCommand cmd = con.CreateCommand();
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.CommandText = "INSERT INTO [socios]" +
+        //        "(nombre, apellido, dni, telefono, correo, direccion, sexo, fecha_nac, descripcion) " +
+        //        "VALUES " +
+        //        "('"+ txt_nombre.Text +"','"+ txt_apellido.Text + "','"+ txt_dni.Text + "','"+ txt_tel.Text + "','"+ txt_correo.Text +"','"+ txt_direc.Text +"','"+ txt_sexo.Text +"','"+ dtp_fecha_nac.Value +"','"+ txt_descripcion.Text +"')";
+        //    cmd.ExecuteNonQuery();
+        //    con.Close();
+
+        //    //dgv_socios.Rows.Add(txt_nombre.Text,txt_apellido.Text,txt_dni.Text,txt_tel.Text,txt_correo.Text,txt_direc.Text,txt_sexo.Text,dtp_fecha_nac.Value,txt_descripcion.Text);
 
         //}
-        #endregion
 
-        private void button1_Click(object sender, EventArgs e) // boton aceptar
+
+        private void button1_Click(object sender, EventArgs e) // botón aceptar
         {
-            dgv_socios.Rows.Add(txt_nombre.Text,txt_apellido.Text,txt_dni.Text,txt_tel.Text,txt_correo.Text,txt_direc.Text,txt_sexo.Text,dtp_fecha_nac.Value,txt_descripcion.Text);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO [socios] " +
+                "(nombre, apellido, dni, telefono, correo, direccion, sexo, fecha_nac, descripcion) " +
+                "VALUES " +
+                "(@nombre, @apellido, @dni, @telefono, @correo, @direccion, @sexo, @fecha_nac, @descripcion)";
 
+            // Agrega los parámetros con sus valores correspondientes
+            cmd.Parameters.AddWithValue("@nombre", txt_nombre.Text);
+            cmd.Parameters.AddWithValue("@apellido", txt_apellido.Text);
+            cmd.Parameters.AddWithValue("@dni", txt_dni.Text);
+            cmd.Parameters.AddWithValue("@telefono", txt_tel.Text);
+            cmd.Parameters.AddWithValue("@correo", txt_correo.Text);
+            cmd.Parameters.AddWithValue("@direccion", txt_direc.Text);
+            cmd.Parameters.AddWithValue("@sexo", txt_sexo.Text);
+            cmd.Parameters.AddWithValue("@fecha_nac", dtp_fecha_nac.Value);
+            cmd.Parameters.AddWithValue("@descripcion", txt_descripcion.Text);
 
+            cmd.ExecuteNonQuery();
+            con.Close();
 
-            //using (GimnasioEntities db = new GimnasioEntities())
-            //{
-
-
-            //    socios oSocios = new socios();
-            //    oSocios.nombre = txt_nombre.Text;
-            //    oSocios.apellido = txt_apellido.Text;
-            //    oSocios.dni = txt_dni.Text;
-            //    oSocios.correo = txt_correo.Text;
-            //    oSocios.direccion = txt_direc.Text;
-            //    oSocios.sexo = txt_sexo.Text;
-            //    oSocios.fecha_nac = dtp_fecha_nac.Value;
-            //    oSocios.telefono = txt_tel.Text;
-            //    oSocios.descripcion = txt_descripcion.Text;
-
-            //    if      
-            //            (
-                        
-            //            txt_nombre.Text != ""
-            //            && txt_apellido.Text != ""
-            //            && txt_dni.Text != ""
-            //            && txt_correo.Text != ""
-            //            && txt_direc.Text != ""
-            //            && txt_sexo.Text != ""
-            //            //&& dtp_fecha_nac.Text != ""
-            //            && txt_tel.Text != ""
-
-            //            )
-
-            //            db.socios.Add(oSocios);
-            //            db.SaveChanges();
-
-            //            txt_nombre.Text = "";
-            //            txt_apellido.Text = "";
-            //            txt_dni.Text = "";
-            //            txt_correo.Text = "";
-            //            //dtp_fecha_nac.Text = "";
-            //            txt_tel.Text = "";
-            //            txt_descripcion.Text = "";
-            //            MessageBox.Show("Nuevo socio agregado");
-
-             
-            //}
-
-
-            //{ 
-            //    dataGrid_socios.Rows.Add(txt_nombre.Text,txt_apellido.Text,txt_dni.Text,txt_tel.Text,txt_fecha_nac.Text,txt_tel.Text,txt_descripcion.Text);
-
-            //}
+            // Actualizar el DataGridView
+            dgv_socios.Refresh();
         }
+
+
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
         {
