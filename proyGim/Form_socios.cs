@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using proyGim.Models;
+using ClosedXML.Excel;
 
 namespace proyGim
 {
@@ -71,30 +72,8 @@ namespace proyGim
                     e.FormattingApplied = true; // Marcar como formateado para evitar la recursión
                 }
 
-
-                // Formatear la fecha como una cadena con el formato deseado
-                //e.Value = fecha.ToString("dd/MM/yyyy"); // Cambia el formato según tus necesidades
-                //e.FormattingApplied = true; // Marcar como formateado para evitar la recursión
             }
         }
-
-
-
-        //private void button1_Click(object sender, EventArgs e) // boton aceptar
-        //{
-        //    con.Open();
-        //    SqlCommand cmd = con.CreateCommand();
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.CommandText = "INSERT INTO [socios]" +
-        //        "(nombre, apellido, dni, telefono, correo, direccion, sexo, fecha_nac, descripcion) " +
-        //        "VALUES " +
-        //        "('"+ txt_nombre.Text +"','"+ txt_apellido.Text + "','"+ txt_dni.Text + "','"+ txt_tel.Text + "','"+ txt_correo.Text +"','"+ txt_direc.Text +"','"+ txt_sexo.Text +"','"+ dtp_fecha_nac.Value +"','"+ txt_descripcion.Text +"')";
-        //    cmd.ExecuteNonQuery();
-        //    con.Close();
-
-        //    //dgv_socios.Rows.Add(txt_nombre.Text,txt_apellido.Text,txt_dni.Text,txt_tel.Text,txt_correo.Text,txt_direc.Text,txt_sexo.Text,dtp_fecha_nac.Value,txt_descripcion.Text);
-
-        //}
 
 
         private void button1_Click(object sender, EventArgs e) // botón aceptar
@@ -122,7 +101,7 @@ namespace proyGim
             con.Close();
 
             // Actualizar el DataGridView
-            dgv_socios.Refresh();
+            filldgv();
         }
 
 
@@ -151,17 +130,42 @@ namespace proyGim
 
         }
 
-        private void Delete()
+        //private void Delete()
+        //{
+        //    foreach (DataGridViewRow item in this.dgv_socios.SelectedRows)
+        //    {
+        //        dgv_socios.Rows.RemoveAt(item.Index);
+        //    }
+        //}
+
+        private void button3_Click(object sender, EventArgs e) // botón borrar
         {
-            foreach (DataGridViewRow item in this.dgv_socios.SelectedRows)
+            // Verificar si hay una fila seleccionada
+            if (dgv_socios.SelectedRows.Count > 0)
             {
-                dgv_socios.Rows.RemoveAt(item.Index);
+                // Obtener la fila seleccionada (la primera en este caso)
+                DataGridViewRow selectedRow = dgv_socios.SelectedRows[0];
+
+                // Eliminar la fila de la fuente de datos (por ejemplo, un DataTable)
+                if (selectedRow.DataBoundItem is DataRowView dataRowView)
+                {
+                    // Obtener el DataRow subyacente del DataTable si estás enlazando a un DataTable
+                    DataRow dataRow = dataRowView.Row;
+
+                    // Eliminar la fila del DataTable
+                    ((DataTable)dgv_socios.DataSource).Rows.Remove(dataRow);
+                }
+                else
+                {
+                    // Si no estás enlazando a un DataTable, puedes eliminar la fila directamente desde el DataGridView
+                    dgv_socios.Rows.Remove(selectedRow);
+                }
+
+                // Actualizar el DataGridView después de eliminar
+                dgv_socios.Refresh();
             }
         }
-        private void button3_Click(object sender, EventArgs e) // boton borrar
-        {
-            Delete();
-        }
+
 
         Bitmap bitmap;
         private void button6_Click(object sender, EventArgs e) // boton imprimir
@@ -175,7 +179,7 @@ namespace proyGim
             dgv_socios.Height = height;
         }
 
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e) 
         {
             e.Graphics.DrawImage(bitmap, 0, 0);
         }
@@ -220,6 +224,41 @@ namespace proyGim
 
         private void button7_Click(object sender, EventArgs e) // boton guardar
         {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e) // boton exportar excel
+        {
+
+            // Crear un nuevo libro de Excel
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Datos");
+
+            // Obtener los nombres de las columnas del DataGridView y agregarlos a la hoja de trabajo
+            for (int col = 1; col <= dgv_socios.Columns.Count; col++)
+            {
+                worksheet.Cell(1, col).Value = dgv_socios.Columns[col - 1].HeaderText;
+            }
+
+            // Recorrer las filas del DataGridView y agregar los datos a la hoja de trabajo
+            for (int row = 0; row < dgv_socios.Rows.Count; row++)
+            {
+                for (int col = 0; col < dgv_socios.Columns.Count; col++)
+                {
+                    worksheet.Cell(row + 2, col + 1).Value = dgv_socios.Rows[row].Cells[col].Value.ToString();
+
+                }
+            }
+
+            // Guardar el archivo de Excel en una ubicación específica
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Guardar archivo de Excel";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                workbook.SaveAs(saveFileDialog.FileName);
+                MessageBox.Show("Datos exportados a Excel correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
     }

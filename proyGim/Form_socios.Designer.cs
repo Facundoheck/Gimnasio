@@ -48,7 +48,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.gimnasioDataSet = new proyGim.GimnasioDataSet();
             this.sociosBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -68,9 +67,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_socios = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -218,22 +217,13 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(716, 553);
+            this.button3.Location = new System.Drawing.Point(1350, 121);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(110, 34);
             this.button3.TabIndex = 20;
             this.button3.Text = "Eliminar";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(570, 553);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(110, 34);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Modificar";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -306,7 +296,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1356, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1493, 24);
             this.menuStrip1.TabIndex = 35;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -361,7 +351,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(860, 553);
+            this.button6.Location = new System.Drawing.Point(1350, 191);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(110, 34);
             this.button6.TabIndex = 38;
@@ -384,16 +374,6 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(1002, 553);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(109, 34);
-            this.button7.TabIndex = 39;
-            this.button7.Text = "Guardar";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(67, 444);
@@ -411,19 +391,28 @@
             this.dgv_socios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_socios.Location = new System.Drawing.Point(364, 86);
             this.dgv_socios.Name = "dgv_socios";
-            this.dgv_socios.ReadOnly = true;
             this.dgv_socios.Size = new System.Drawing.Size(955, 442);
             this.dgv_socios.TabIndex = 41;
             this.dgv_socios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_CellFormatting);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1350, 263);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(110, 34);
+            this.button4.TabIndex = 42;
+            this.button4.Text = "Exportar Excel";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form_socios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1356, 712);
+            this.ClientSize = new System.Drawing.Size(1493, 712);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.dgv_socios);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dtp_fecha_nac);
@@ -432,7 +421,6 @@
             this.Controls.Add(this.txt_sexo);
             this.Controls.Add(this.txt_direc);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
@@ -488,7 +476,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private GimnasioDataSet gimnasioDataSet;
         private System.Windows.Forms.BindingSource sociosBindingSource;
@@ -508,8 +495,8 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridView dgv_socios;
+        private System.Windows.Forms.Button button4;
     }
 }
