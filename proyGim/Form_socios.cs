@@ -102,6 +102,7 @@ namespace proyGim
 
             // Actualizar el DataGridView
             filldgv();
+            //dgv_socios.Refresh();
         }
 
 
@@ -138,6 +139,9 @@ namespace proyGim
         //    }
         //}
 
+
+
+
         private void button3_Click(object sender, EventArgs e) // botón borrar
         {
             // Verificar si hay una fila seleccionada
@@ -146,25 +150,61 @@ namespace proyGim
                 // Obtener la fila seleccionada (la primera en este caso)
                 DataGridViewRow selectedRow = dgv_socios.SelectedRows[0];
 
-                // Eliminar la fila de la fuente de datos (por ejemplo, un DataTable)
-                if (selectedRow.DataBoundItem is DataRowView dataRowView)
-                {
-                    // Obtener el DataRow subyacente del DataTable si estás enlazando a un DataTable
-                    DataRow dataRow = dataRowView.Row;
+                // Obtener el ID o clave primaria de la fila que se eliminará
+                int idToDelete = int.Parse(selectedRow.Cells["id_socio"].Value.ToString());
 
-                    // Eliminar la fila del DataTable
-                    ((DataTable)dgv_socios.DataSource).Rows.Remove(dataRow);
-                }
-                else
+                // Eliminar la fila de la base de datos
+                con.Open();
+                string deleteQuery = "DELETE FROM socios WHERE id_socio = @id"; // Ajusta según tu esquema de base de datos
+                using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, con))
                 {
-                    // Si no estás enlazando a un DataTable, puedes eliminar la fila directamente desde el DataGridView
-                    dgv_socios.Rows.Remove(selectedRow);
+                    deleteCmd.Parameters.AddWithValue("@id", idToDelete);
+                    deleteCmd.ExecuteNonQuery();
                 }
+                con.Close();
+
+                // Eliminar la fila del DataGridView
+                dgv_socios.Rows.Remove(selectedRow);
 
                 // Actualizar el DataGridView después de eliminar
                 dgv_socios.Refresh();
             }
         }
+
+
+
+
+
+
+
+
+        //private void button3_Click(object sender, EventArgs e) // botón borrar
+        //{
+        //    // Verificar si hay una fila seleccionada
+        //    if (dgv_socios.SelectedRows.Count > 0)
+        //    {
+        //        // Obtener la fila seleccionada (la primera en este caso)
+        //        DataGridViewRow selectedRow = dgv_socios.SelectedRows[0];
+
+        //        // Eliminar la fila de la fuente de datos (por ejemplo, un DataTable)
+        //        if (selectedRow.DataBoundItem is DataRowView dataRowView)
+        //        {
+        //            // Obtener el DataRow subyacente del DataTable si estás enlazando a un DataTable
+        //            DataRow dataRow = dataRowView.Row;
+
+        //            // Eliminar la fila del DataTable
+        //            ((DataTable)dgv_socios.DataSource).Rows.Remove(dataRow);
+        //        }
+        //        else
+        //        {
+        //            // Si no estás enlazando a un DataTable, puedes eliminar la fila directamente desde el DataGridView
+        //            dgv_socios.Rows.Remove(selectedRow);
+        //        }
+
+        //        // Actualizar el DataGridView después de eliminar
+        //        dgv_socios.Refresh();
+        //    }
+        //}
 
 
         Bitmap bitmap;

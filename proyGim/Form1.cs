@@ -36,34 +36,6 @@ namespace proyGim
             InitializeComponent();
         }
 
-        private void btn_login_Click(object sender, EventArgs e)
-        {
-            //con.Open();
-            //cmd = new SqlCommand("SELECT * FROM usuarios WHERE usuario='"+txt_usuario.Text+"'and cont='"+txt_contra.Text+"'", con);
-            //da = new SqlDataAdapter(cmd);
-            //DataSet ds = new DataSet();
-            //da.Fill(ds);
-            //int i = ds.Tables[0].Rows.Count;
-            //if (i == 1)
-            //{
-            //    this.Hide();
-            //    Form_main fm = new Form_main();
-            //    fm.Show();
-            //}
-
-            //if (textBox1.Text == "admin" && textBox2.Text == "admin")
-            //{
-            //    this.Hide();
-            //    Form_main fm = new Form_main();
-            //    fm.Show();
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("El usuario o la contraseña no son correctos");
-            //}
-        }
-
         private void btn_login_Click_1(object sender, EventArgs e)
         {
             String user, pass;
