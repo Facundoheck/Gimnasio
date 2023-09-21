@@ -70,6 +70,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.dgv_socios = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gimnasioDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sociosBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -208,7 +209,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1027, 45);
+            this.button2.Location = new System.Drawing.Point(1026, 46);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 19;
@@ -217,9 +218,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1350, 86);
+            this.button3.Location = new System.Drawing.Point(1141, 40);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 34);
+            this.button3.Size = new System.Drawing.Size(111, 34);
             this.button3.TabIndex = 20;
             this.button3.Text = "Eliminar";
             this.button3.UseVisualStyleBackColor = true;
@@ -227,7 +228,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1350, 494);
+            this.button5.Location = new System.Drawing.Point(1350, 420);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(110, 34);
             this.button5.TabIndex = 23;
@@ -351,7 +352,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1350, 157);
+            this.button6.Location = new System.Drawing.Point(1350, 209);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(110, 34);
             this.button6.TabIndex = 38;
@@ -391,13 +392,13 @@
             this.dgv_socios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_socios.Location = new System.Drawing.Point(364, 86);
             this.dgv_socios.Name = "dgv_socios";
-            this.dgv_socios.Size = new System.Drawing.Size(955, 442);
+            this.dgv_socios.Size = new System.Drawing.Size(955, 455);
             this.dgv_socios.TabIndex = 41;
             this.dgv_socios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_CellFormatting);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1350, 234);
+            this.button4.Location = new System.Drawing.Point(1350, 262);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 34);
             this.button4.TabIndex = 42;
@@ -405,11 +406,22 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1350, 366);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(110, 34);
+            this.button7.TabIndex = 43;
+            this.button7.Text = "Volver al menú";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
+            // 
             // Form_socios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1493, 575);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dgv_socios);
             this.Controls.Add(this.button8);
@@ -498,5 +510,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridView dgv_socios;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
     }
 }

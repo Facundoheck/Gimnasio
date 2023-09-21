@@ -131,15 +131,6 @@ namespace proyGim
 
         }
 
-        //private void Delete()
-        //{
-        //    foreach (DataGridViewRow item in this.dgv_socios.SelectedRows)
-        //    {
-        //        dgv_socios.Rows.RemoveAt(item.Index);
-        //    }
-        //}
-
-
 
 
         private void button3_Click(object sender, EventArgs e) // botón borrar
@@ -170,42 +161,6 @@ namespace proyGim
                 dgv_socios.Refresh();
             }
         }
-
-
-
-
-
-
-
-
-        //private void button3_Click(object sender, EventArgs e) // botón borrar
-        //{
-        //    // Verificar si hay una fila seleccionada
-        //    if (dgv_socios.SelectedRows.Count > 0)
-        //    {
-        //        // Obtener la fila seleccionada (la primera en este caso)
-        //        DataGridViewRow selectedRow = dgv_socios.SelectedRows[0];
-
-        //        // Eliminar la fila de la fuente de datos (por ejemplo, un DataTable)
-        //        if (selectedRow.DataBoundItem is DataRowView dataRowView)
-        //        {
-        //            // Obtener el DataRow subyacente del DataTable si estás enlazando a un DataTable
-        //            DataRow dataRow = dataRowView.Row;
-
-        //            // Eliminar la fila del DataTable
-        //            ((DataTable)dgv_socios.DataSource).Rows.Remove(dataRow);
-        //        }
-        //        else
-        //        {
-        //            // Si no estás enlazando a un DataTable, puedes eliminar la fila directamente desde el DataGridView
-        //            dgv_socios.Rows.Remove(selectedRow);
-        //        }
-
-        //        // Actualizar el DataGridView después de eliminar
-        //        dgv_socios.Refresh();
-        //    }
-        //}
-
 
         Bitmap bitmap;
         private void button6_Click(object sender, EventArgs e) // boton imprimir
@@ -299,6 +254,13 @@ namespace proyGim
                 workbook.SaveAs(saveFileDialog.FileName);
                 MessageBox.Show("Datos exportados a Excel correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+        }
+
+        private void button7_Click_1(object sender, EventArgs e) // boton volver a menu principal
+        {
+
+            this.Close();
 
         }
     }

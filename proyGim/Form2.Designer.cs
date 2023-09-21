@@ -65,6 +65,7 @@
             this.btn_ctacte.TabIndex = 2;
             this.btn_ctacte.Text = "Cuentas Corrientes";
             this.btn_ctacte.UseVisualStyleBackColor = true;
+            this.btn_ctacte.Click += new System.EventHandler(this.btn_ctacte_Click);
             // 
             // btn_profesores
             // 
@@ -92,6 +93,7 @@
             this.btn_salir.TabIndex = 6;
             this.btn_salir.Text = "Salir";
             this.btn_salir.UseVisualStyleBackColor = true;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
             // pictureBox1
             // 
@@ -118,6 +120,7 @@
             this.Name = "Form_main";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Menú";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

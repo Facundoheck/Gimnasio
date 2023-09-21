@@ -10,21 +10,14 @@ using System.Windows.Forms;
 
 namespace proyGim
 {
-    public partial class Form_main : Form
+    public partial class Form_ctacte : Form
     {
-        public Form_main()
+        public Form_ctacte()
         {
             InitializeComponent();
         }
 
-        private void btn_socios_Click(object sender, EventArgs e)
-        {
-            //this.Hide();
-            Form_socios fm = new Form_socios();
-            fm.Show();
-        }
-
-        private void btn_salir_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // boton salir
         {
             DialogResult res;
             res = MessageBox.Show("Quiere salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -38,10 +31,14 @@ namespace proyGim
             }
         }
 
-        private void btn_ctacte_Click(object sender, EventArgs e) // boton ctacte
+        private void button2_Click(object sender, EventArgs e) // boton volver
         {
-            Form_ctacte fc = new Form_ctacte();
-            fc.Show();
+            this.Close();
+        }
+
+        private void Form_ctacte_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
